@@ -20,8 +20,11 @@ module.exports = {
     },
     plugins: ['react', '@typescript-eslint', 'prettier'],
     rules: {
-        "@typescript-eslint/explicit-function-return-type": ['error'],
-        "@typescript-eslint/no-unused-vars": ['error'],
+        '@typescript-eslint/explicit-function-return-type': ['error'],
+        '@typescript-eslint/no-unused-vars': ['error'],
         'react/react-in-jsx-scope': 0,
+        'react/function-component-definition': 0,
+        'import/prefer-default-export': 0,
+        'import/no-extraneous-dependencies': 0
     },
 };
