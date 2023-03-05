@@ -22,6 +22,11 @@ module.exports = {
     rules: {
         '@typescript-eslint/explicit-function-return-type': ['error'],
         '@typescript-eslint/no-unused-vars': ['error'],
+        '@typescript-eslint/lines-between-class-members': [
+          'error',
+          'always',
+          { exceptAfterSingleLine: true },
+        ],
         'react/react-in-jsx-scope': 0,
         'react/function-component-definition': 0,
         'import/prefer-default-export': 0,

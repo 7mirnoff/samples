@@ -3,11 +3,8 @@ import { IBoard, ICell, ISnake, ISnakeGame } from './api'
 
 class SnakeGame implements ISnakeGame {
   private snake: ISnake
-
   private board: IBoard
-
   private direction: Direction = Direction.DirectionsNone
-
   private gameOver = false
 
   constructor(snake: ISnake, board: IBoard) {

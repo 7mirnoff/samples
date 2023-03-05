@@ -3,9 +3,7 @@ import { CellType } from './utils'
 
 export default class Cell implements ICell {
   private readonly row: Row
-
   private readonly col: Col
-
   private cellType = CellType.Empty
 
   constructor(row: Row, col: Col) {

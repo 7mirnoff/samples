@@ -4,9 +4,7 @@ import { CellType } from './utils'
 
 export default class Board implements IBoard {
   private readonly rowCount: number
-
   private readonly columnCount: number
-
   private cells: Field
 
   constructor(rowCount: number, columnCount: number) {

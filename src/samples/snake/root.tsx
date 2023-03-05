@@ -3,7 +3,7 @@ import SnakeGame from './impl/snake-game'
 
 const Root: React.FC = () => {
   useEffect(() => {
-    const game = new SnakeGame()
+    // const game = new SnakeGame()
   }, [])
   return <div>Snake root</div>
 }
