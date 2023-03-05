@@ -46,22 +46,24 @@ class SnakeGame implements ISnakeGame {
 
   update(): void {
     console.log('Going to update the game')
-    if (!this.gameOver) {
-      if (this.direction !== Direction.DirectionsNone) {
-        const nextCell = this.getNextCell(this.snake.getHead())
-
-        if (this.snake.checkCrash(nextCell)) {
-          this.direction = Direction.DirectionsNone
-          this.gameOver = true
-        } else {
-          this.snake.move(nextCell)
-          if (nextCell.getCellType() === CellType.Food) {
-            this.grow()
-            this.generateFood()
-          }
-        }
-      }
-    }
+    console.log(this)
+    // TODO: Waiting custom linked list
+    // if (!this.gameOver) {
+    //   if (this.direction !== Direction.DirectionsNone) {
+    //     const nextCell = this.getNextCell(this.snake.getHead())
+    //
+    //     if (this.snake.checkCrash(nextCell)) {
+    //       this.direction = Direction.DirectionsNone
+    //       this.gameOver = true
+    //     } else {
+    //       this.snake.move(nextCell)
+    //       if (nextCell.getCellType() === CellType.Food) {
+    //         this.grow()
+    //         this.generateFood()
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   getNextCell(currentPosition: ICell): ICell {
