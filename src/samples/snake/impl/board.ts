@@ -11,7 +11,7 @@ export default class Board implements IBoard {
     this.rowCount = rowCount
     this.columnCount = columnCount
 
-    this.cells = []
+    this.cells = Array.from(Array(rowCount), () => Array(columnCount))
     for (let row = 0; row < rowCount; row++) {
       for (let column = 0; column < columnCount; column++) {
         this.cells[row][column] = new Cell(row, column)
@@ -32,8 +32,8 @@ export default class Board implements IBoard {
     let row: number
     let column: number
     while (true) {
-      row = Math.random() * this.rowCount
-      column = Math.random() * this.columnCount
+      row = Math.floor(Math.random() * this.rowCount)
+      column = Math.floor(Math.random() * this.columnCount)
 
       if (this.cells[row][column].getCellType() !== CellType.SnakeNode) {
         break

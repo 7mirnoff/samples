@@ -5,6 +5,29 @@ export class DoublyLinkedList<T> implements INodeList<T> {
   head: INode<T> | null = null
   tail: INode<T> | null = null
 
+  // Добавляем узел в начало списка.
+  prepend(value: T): INodeList<T> {
+    // Создаем новый узел, который будет head.
+    const newNode = new DoublyLinkedListNode(value, this.head)
+
+    // Если есть head, то он больше не будет head.
+    // Поэтому делаем его предыдущую (previous) ссылку на новый узел (new head).
+    // Затем делаем новый узел head.
+
+    if (this.head) {
+      this.head.previous = newNode
+    }
+    this.head = newNode
+
+    // Если еще нет tail, сделаем новый узел tail.
+    if (!this.tail) {
+      this.tail = newNode
+    }
+
+    return this
+  }
+
+  // Добавляем узел в конец списка.
   append(value: T): INodeList<T> {
     const newNode = new DoublyLinkedListNode(value)
 
@@ -75,27 +98,90 @@ export class DoublyLinkedList<T> implements INodeList<T> {
   }
 
   deleteHead(): INode<T> | null {
-    return undefined
+    if (!this.head) {
+      return null
+    }
+
+    const deletedHead = this.head
+
+    if (this.head.next) {
+      this.head = this.head.next
+      this.head.previous = null
+    } else {
+      this.head = null
+      this.tail = null
+    }
+
+    return deletedHead
   }
 
   deleteTail(): INode<T> | null {
-    return undefined
+    if (!this.tail) {
+      return null
+    }
+
+    const deletedTail = this.tail
+
+    if (this.tail.previous) {
+      this.tail = this.tail.previous
+      this.tail.next = null
+    } else {
+      this.head = null
+      this.tail = null
+    }
+
+    return deletedTail
   }
 
   find(value?: T | undefined): INode<T> | null {
-    return undefined
+    if (!this.head) {
+      return null
+    }
+
+    let currentNode: DoublyLinkedListNode<T> | null = this.head
+
+    while (currentNode) {
+      // Если указано значение, пробуем сравнить по значению.
+      if (value !== undefined && currentNode.value === value) {
+        return currentNode
+      }
+
+      currentNode = currentNode.next
+    }
+
+    return null
   }
 
   fromArray(values: Array<T>): INodeList<T> {
-    return undefined
-  }
+    values.forEach((value: T) => this.append(value))
 
-  prepend(value: T): INodeList<T> {
-    return undefined
+    return this
   }
 
   reverse(): INodeList<T> {
-    return undefined
+    let currNode = this.head
+    let prevNode = null
+    let nextNode = null
+
+    while (currNode) {
+      // Сохраняем следующий и предыдуший узел.
+      nextNode = currNode.next
+      prevNode = currNode.previous
+
+      // Меняем следующий узел текущего узла, чтобы он ссылался с предыдущий узел.
+      currNode.next = prevNode
+      currNode.previous = nextNode
+
+      // Перемещаем узлы prevNode и currNode на один шаг вперед.
+      prevNode = currNode
+      currNode = nextNode
+    }
+
+    // Сбрасываем head и tail.
+    this.tail = this.head
+    this.head = prevNode
+
+    return this
   }
 
   toArray(): INode<T>[] {

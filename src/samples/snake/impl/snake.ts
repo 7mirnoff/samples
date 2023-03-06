@@ -1,5 +1,60 @@
-import { ISnake } from './api'
+import { ICell, ISnake } from './api'
+import { DoublyLinkedList } from '../../../feature/doubly-linked-list/doubly-linked-list'
+import { CellType } from './utils'
 
 export default class Snake implements ISnake {
-  // https://www.geeksforgeeks.org/design-snake-game/
+  snakePartList = new DoublyLinkedList<ICell>()
+  head: ICell
+
+  constructor(initPos: ICell) {
+    this.head = initPos
+    this.snakePartList.append(this.head)
+    this.head.setCellType(CellType.SnakeNode)
+  }
+
+  grow(): void {
+    this.snakePartList.append(this.head)
+  }
+
+  move(nextCell: ICell): void {
+    console.log(`Snake is moving to ${nextCell.getRow()} ${nextCell.getCol()}`)
+    const tail = this.snakePartList.deleteTail()?.value
+
+    if (tail) {
+      tail.setCellType(CellType.Empty)
+      this.head = nextCell
+      this.head.setCellType(CellType.SnakeNode)
+      this.snakePartList.append(this.head)
+    }
+  }
+
+  checkCrash(nextCell: ICell): boolean {
+    console.log('Going to check for Crash')
+
+    // TODO: will make linked list is iterable
+    const snakePartArray = this.snakePartList.toArray()
+    for (const nodeCell of snakePartArray) {
+      if (nodeCell.value === nextCell) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  getHead(): ICell {
+    return this.head
+  }
+
+  setHead(head: ICell): void {
+    this.head = head
+  }
+
+  getSnakePartList(): DoublyLinkedList<ICell> {
+    return this.snakePartList
+  }
+
+  setSnakePartList(snakePartList: DoublyLinkedList<ICell>): void {
+    this.snakePartList = snakePartList
+  }
 }
