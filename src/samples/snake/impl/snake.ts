@@ -31,10 +31,10 @@ export default class Snake implements ISnake {
   checkCrash(nextCell: ICell): boolean {
     console.log('Going to check for Crash')
 
-    // TODO: will make linked list is iterable
     const snakePartArray = this.snakePartList.toArray()
-    for (const nodeCell of snakePartArray) {
-      if (nodeCell.value === nextCell) {
+
+    for (let i = 0; i < snakePartArray.length - 1; i++) {
+      if (snakePartArray[i].value === nextCell) {
         return true
       }
     }

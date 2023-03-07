@@ -10,7 +10,7 @@ export default interface ISnakeGame {
   setBoard: (board: IBoard) => void
   isGameOver: boolean
   getDirection: () => Direction
-  setDirection: (direction: Direction) => void
+  setNextDirection: (nextDirection: Direction) => void
 
   update: () => void
   getNextCell: (currentPosition: ICell) => ICell

@@ -4,12 +4,15 @@ import { IBoard, ICell, ISnake, ISnakeGame } from './api'
 class SnakeGame implements ISnakeGame {
   private snake: ISnake
   private board: IBoard
-  private direction: Direction = Direction.DirectionsNone
+  private direction = Direction.DirectionsNone
+  private nextDirection = Direction.DirectionsNone
   private gameOver = false
 
   constructor(snake: ISnake, board: IBoard) {
     this.snake = snake
     this.board = board
+
+    this.board.generateFood()
   }
 
   getSnake(): ISnake {
@@ -40,14 +43,14 @@ class SnakeGame implements ISnakeGame {
     return this.direction
   }
 
-  setDirection(direction: Direction): void {
-    this.direction = direction
+  setNextDirection(nextDirection: Direction): void {
+    this.nextDirection = nextDirection
   }
 
   update(): void {
     console.log('Going to update the game')
     if (!this.gameOver) {
-      if (this.direction !== Direction.DirectionsNone) {
+      if (this.direction !== Direction.DirectionsNone || this.nextDirection !== Direction.DirectionsNone) {
         const nextCell = this.getNextCell(this.snake.getHead())
 
         if (this.snake.checkCrash(nextCell)) {
@@ -66,6 +69,9 @@ class SnakeGame implements ISnakeGame {
 
   getNextCell(currentPosition: ICell): ICell {
     console.log('Going to find next cell')
+    if (this.direction !== -this.nextDirection) {
+      this.direction = this.nextDirection
+    }
 
     let row = currentPosition.getRow()
     let col = currentPosition.getCol()

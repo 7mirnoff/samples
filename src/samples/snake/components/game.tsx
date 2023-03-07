@@ -1,37 +1,35 @@
-import React, { PropsWithChildren, useContext, useEffect, useState } from 'react'
+import React, { PropsWithChildren, useContext, useEffect } from 'react'
 import { useInterval, useKey } from 'react-use'
 import { SnakeGameContext } from '../context'
 import { Direction } from '../impl/utils'
 
 export const Game: React.FC<PropsWithChildren> = ({ children }) => {
   const { game, setTick } = useContext(SnakeGameContext)
-
+  console.log(game)
   useKey('ArrowUp', () => {
-    game.setDirection(Direction.DirectionsUp)
+    game.setNextDirection(Direction.DirectionsUp)
   })
 
   useKey('ArrowDown', () => {
-    game.setDirection(Direction.DirectionsDown)
+    game.setNextDirection(Direction.DirectionsDown)
   })
 
   useKey('ArrowLeft', () => {
-    game.setDirection(Direction.DirectionsLeft)
+    game.setNextDirection(Direction.DirectionsLeft)
   })
 
   useKey('ArrowRight', () => {
-    game.setDirection(Direction.DirectionsRight)
+    game.setNextDirection(Direction.DirectionsRight)
   })
 
   useEffect(() => {
-    game.isGameOver = false
-    game.getBoard().generateFood()
     // game.setDirection(Direction.DirectionsRight)
   }, [game])
 
   useInterval(() => {
     setTick((prevTick) => prevTick + 1)
     game.update()
-  }, 1000)
+  }, 500)
 
   return <div>{children}</div>
 }
