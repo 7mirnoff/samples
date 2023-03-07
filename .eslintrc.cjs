@@ -32,6 +32,7 @@ module.exports = {
         'import/prefer-default-export': 0,
         'import/no-extraneous-dependencies': 0,
         'no-plusplus': 0,
-        "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"]
+        "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+        "no-param-reassign": ["error", { "props": false }]
     },
 };

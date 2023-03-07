@@ -54,11 +54,11 @@ class SnakeGame implements ISnakeGame {
           this.direction = Direction.DirectionsNone
           this.gameOver = true
         } else {
-          this.snake.move(nextCell)
           if (nextCell.getCellType() === CellType.Food) {
             this.snake.grow()
             this.board.generateFood()
           }
+          this.snake.move(nextCell)
         }
       }
     }

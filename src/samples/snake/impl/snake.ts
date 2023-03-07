@@ -8,12 +8,12 @@ export default class Snake implements ISnake {
 
   constructor(initPos: ICell) {
     this.head = initPos
-    this.snakePartList.append(this.head)
+    this.snakePartList.prepend(this.head)
     this.head.setCellType(CellType.SnakeNode)
   }
 
   grow(): void {
-    this.snakePartList.append(this.head)
+    this.snakePartList.prepend(this.head)
   }
 
   move(nextCell: ICell): void {
@@ -24,7 +24,7 @@ export default class Snake implements ISnake {
       tail.setCellType(CellType.Empty)
       this.head = nextCell
       this.head.setCellType(CellType.SnakeNode)
-      this.snakePartList.append(this.head)
+      this.snakePartList.prepend(this.head)
     }
   }
 
