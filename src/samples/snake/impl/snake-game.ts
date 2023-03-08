@@ -6,13 +6,11 @@ class SnakeGame implements ISnakeGame {
   private board: IBoard
   private direction = Direction.DirectionsNone
   private nextDirection = Direction.DirectionsNone
-  private gameOver = false
+  private gameOver = true
 
   constructor(snake: ISnake, board: IBoard) {
     this.snake = snake
     this.board = board
-
-    this.board.generateFood()
   }
 
   getSnake(): ISnake {
@@ -89,6 +87,12 @@ class SnakeGame implements ISnakeGame {
     const nextCell = this.board.getCells()[row][col]
 
     return nextCell
+  }
+
+  startGame(): void {
+    this.gameOver = false
+    this.board.generateFood()
+    this.nextDirection = Direction.DirectionsRight
   }
 }
 

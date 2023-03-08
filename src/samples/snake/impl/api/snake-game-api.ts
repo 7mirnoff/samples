@@ -14,4 +14,5 @@ export default interface ISnakeGame {
 
   update: () => void
   getNextCell: (currentPosition: ICell) => ICell
+  startGame: () => void
 }

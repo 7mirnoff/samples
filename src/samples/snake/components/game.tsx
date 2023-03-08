@@ -24,12 +24,23 @@ export const Game: React.FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     // game.setDirection(Direction.DirectionsRight)
-  }, [game])
+  }, [])
 
   useInterval(() => {
     setTick((prevTick) => prevTick + 1)
     game.update()
   }, 500)
 
-  return <div>{children}</div>
+  const onButtonStartClick = (): void => {
+    game.startGame()
+  }
+
+  return (
+    <div>
+      {children}
+      <button onClick={onButtonStartClick} type="button">
+        Start
+      </button>
+    </div>
+  )
 }
