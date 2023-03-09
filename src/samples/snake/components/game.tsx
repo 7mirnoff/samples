@@ -6,7 +6,6 @@ import { Direction } from '../impl/utils'
 
 export const Game: React.FC<PropsWithChildren> = ({ children }) => {
   const { game, setTick } = useContext(SnakeGameContext)
-  console.log(game)
   useKey('ArrowUp', () => {
     game.setNextDirection(Direction.DirectionsUp)
   })
