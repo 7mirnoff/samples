@@ -1,5 +1,6 @@
 import React, { PropsWithChildren, useContext, useEffect } from 'react'
 import { useInterval, useKey } from 'react-use'
+import { Link } from 'react-router-dom'
 import { SnakeGameContext } from '../context'
 import { Direction } from '../impl/utils'
 
@@ -36,11 +37,14 @@ export const Game: React.FC<PropsWithChildren> = ({ children }) => {
   }
 
   return (
-    <div>
+    <div style={{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       {children}
-      <button onClick={onButtonStartClick} type="button">
+      <button onClick={onButtonStartClick} type="button" style={{ marginLeft: '20px' }}>
         Start
       </button>
+      <Link to="/" role="button">
+        На главную
+      </Link>
     </div>
   )
 }

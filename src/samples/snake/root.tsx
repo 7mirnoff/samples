@@ -1,4 +1,6 @@
 import React from 'react'
+import 'normalize.css'
+
 import SnakeGameProvider from './context/snake-game-provider'
 import { Grid } from './components'
 import { Game } from './components/game'
