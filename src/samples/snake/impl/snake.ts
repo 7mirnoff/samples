@@ -17,7 +17,7 @@ export default class Snake implements ISnake {
   }
 
   move(nextCell: ICell): void {
-    console.log(`Snake is moving to ${nextCell.getRow()} ${nextCell.getCol()}`);
+    console.log(`Snake is moving to ${nextCell.getRow()} ${nextCell.getCol()}`)
     const tail = this.snakePartList.deleteTail()?.value
 
     if (tail) {
