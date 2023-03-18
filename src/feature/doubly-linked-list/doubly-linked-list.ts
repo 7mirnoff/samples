@@ -8,13 +8,10 @@ export class DoublyLinkedList<T> implements INodeList<T>, Iterable<INode<T> | nu
       next(): IteratorResult<INode<T> | null> {
         const currentNode = node
         node = node?.next ?? null
-        if (currentNode) {
-          return {
-            value: currentNode,
-            done: false,
-          }
+        return {
+          value: currentNode,
+          done: !currentNode,
         }
-        return { value: null, done: true }
       },
     }
   }
