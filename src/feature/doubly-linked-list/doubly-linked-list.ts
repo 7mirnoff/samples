@@ -1,7 +1,24 @@
 import { INode, INodeList } from './types'
 import { DoublyLinkedListNode } from './doubly-linked-list-node'
 
-export class DoublyLinkedList<T> implements INodeList<T> {
+export class DoublyLinkedList<T> implements INodeList<T>, Iterable<INode<T> | null> {
+  [Symbol.iterator](): Iterator<INode<T> | null> {
+    let node = this.head
+    return {
+      next(): IteratorResult<INode<T> | null> {
+        const currentNode = node
+        node = node?.next ?? null
+        if (currentNode) {
+          return {
+            value: currentNode,
+            done: false,
+          }
+        }
+        return { value: null, done: true }
+      },
+    }
+  }
+
   head: INode<T> | null = null
   tail: INode<T> | null = null
 
