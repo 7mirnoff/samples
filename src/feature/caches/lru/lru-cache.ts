@@ -1,22 +1,12 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { DoublyLinkedList } from '../../doubly-linked-list/doubly-linked-list'
 import { INode } from '../../doubly-linked-list/types'
 import { ICache } from '../types'
-
-interface ILRUCacheNode<T, K> {
-  key: T
-  value: K
-}
-
-class LRUCacheNode<T, K> implements ILRUCacheNode<T, K> {
-  constructor(public readonly key: T, public readonly value: K) {
-    this.key = key
-    this.value = value
-  }
-}
+import { ILRUCacheValue, LRUCacheValue } from './lrt-cache-value'
 
 export class LRUCache<T, K> implements ICache<T, K> {
-  private map = new Map<T, INode<ILRUCacheNode<T, K>>>()
-  private dll = new DoublyLinkedList<ILRUCacheNode<T, K>>()
+  private map = new Map<T, INode<ILRUCacheValue<T, K>>>()
+  private dll = new DoublyLinkedList<ILRUCacheValue<T, K>>()
 
   constructor(private readonly capacity: number) {
     this.capacity = capacity
@@ -36,18 +26,16 @@ export class LRUCache<T, K> implements ICache<T, K> {
 
   public put(key: T, value: K): void {
     if (this.get(key) !== -1) {
-      // Update last element value
       this.dll.deleteTail()
-      this.dll.append(new LRUCacheNode(key, value))
-      return
-    }
+    } else {
+      if (this.map.size === this.capacity) {
+        this.map.delete(this.dll.head!.value.key)
+        this.dll.deleteHead()
+      }
 
-    if (this.map.size === this.capacity) {
+      const newCacheValue = new LRUCacheValue(key, value)
+      this.dll.append(newCacheValue)
+      this.map.set(key, this.dll.tail!)
     }
   }
 }
-
-// https://www.section.io/engineering-education/lru-cache-implementation-in-javascript/
-
-const f = new LRUCache<string, number>(2)
-console.log(f)
