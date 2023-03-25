@@ -25,6 +25,8 @@ export class LRUCache<T, K> implements ICache<T, K> {
   }
 
   public put(key: T, value: K): void {
+    if (this.capacity <= 0) return
+
     if (this.get(key) !== -1) {
       this.dll.deleteTail()
     } else {

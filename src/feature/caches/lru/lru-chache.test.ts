@@ -37,4 +37,13 @@ describe('LRUCache', () => {
 
     expect([t1, t2, t3, t4]).toEqual([-1, 't2', 't3', 't4'])
   })
+
+  test('check zero capacity', () => {
+    const lruCache = new LRUCache(0)
+    lruCache.put('t1', 't1')
+
+    const t1 = lruCache.get('t1')
+
+    expect(t1).toEqual(-1)
+  })
 })
