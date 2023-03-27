@@ -8,16 +8,16 @@ interface IRequestStrategy {
 export function sendXHR<T>({ method, url, data, headers }: IRequestStrategy): Promise<T> {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
-    xhr.addEventListener('readystatechange', function handlerStateChange() {
-      if (this.readyState === 4) {
-        if (this.status >= 200 && this.status < 300) {
+    xhr.addEventListener('readystatechange', () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status >= 200 && xhr.status < 300) {
           resolve(xhr.response)
         } else {
           reject(xhr.statusText)
         }
       }
     })
-    xhr.addEventListener('error', function handlerError() {
+    xhr.addEventListener('error', () => {
       reject(new Error('Network Error'))
     })
     xhr.open(method, url)
