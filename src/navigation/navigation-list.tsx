@@ -4,7 +4,14 @@ import { Link } from 'react-router-dom'
 export const NavigationList: React.FC = () => {
   return (
     <div>
-      <Link to="/snake">Snake</Link>
+      <ul>
+        <li>
+          <Link to="/snake">Snake</Link>
+        </li>
+        <li>
+          <Link to="/http">HTTP</Link>
+        </li>
+      </ul>
     </div>
   )
 }

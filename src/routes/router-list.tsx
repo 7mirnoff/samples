@@ -7,6 +7,7 @@ function NoMatch(): JSX.Element {
 }
 
 const Snake = React.lazy(async () => import('../samples/snake/root'))
+const Http = React.lazy(async () => import('../samples/http/root'))
 
 export function RouterList(): JSX.Element {
   return (
@@ -14,6 +15,7 @@ export function RouterList(): JSX.Element {
       <Routes>
         <Route index element={<NavigationList />} />
         <Route path="/snake" element={<Snake />} />
+        <Route path="/http" element={<Http />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </Suspense>
