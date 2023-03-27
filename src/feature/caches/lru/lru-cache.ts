@@ -2,7 +2,7 @@
 import { DoublyLinkedList } from '../../doubly-linked-list/doubly-linked-list'
 import { INode } from '../../doubly-linked-list/types'
 import { ICache } from '../types'
-import { ILRUCacheValue, LRUCacheValue } from './lrt-cache-value'
+import { ILRUCacheValue, LRUCacheValue } from './lru-cache-value'
 
 export class LRUCache<T, K> implements ICache<T, K> {
   private map = new Map<T, INode<ILRUCacheValue<T, K>>>()
