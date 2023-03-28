@@ -9,6 +9,7 @@ interface IRequest<T> {
   method: (method: Method) => this
   url: (url: string) => this
   headers: (headers: Record<string, string>) => this
+  body: (body: XMLHttpRequestBodyInit) => this
   create: () => Promise<ICustomResponse<T>>
 }
 
@@ -54,6 +55,11 @@ export class Request<T> implements IRequest<T> {
     return this
   }
 
+  public body(body: XMLHttpRequestBodyInit): this {
+    this._body = body
+    return this
+  }
+
   public create(): Promise<ICustomResponse<T>> {
     if (!this._url) {
       throw new Error('URL not exist')
@@ -74,7 +80,11 @@ export class Request<T> implements IRequest<T> {
       }
     }
 
-    const headers = new Map([['Content-Type', 'application/json']])
+    const headers = new Map()
+
+    if (this._method === Method.get) {
+      headers.set('Content-Type', 'application/json')
+    }
 
     if (this._headers) {
       for (const [header, key] of this._headers) {
