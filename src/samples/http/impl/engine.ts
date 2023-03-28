@@ -1,17 +1,24 @@
-interface IRequestStrategy {
-  method: string
+export enum Method {
+  post = 'POST',
+  get = 'GET',
+  put = 'PUT',
+  delete = 'DELETE',
+}
+
+export interface IRequestParams {
+  method: Method
   url: string
-  data: XMLHttpRequestBodyInit
+  data?: XMLHttpRequestBodyInit | null
   headers?: Map<string, string>
 }
 
-export function sendXHR<T>({ method, url, data, headers }: IRequestStrategy): Promise<T> {
+export async function sendXHR({ method, url, data, headers }: IRequestParams): Promise<XMLHttpRequest> {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
     xhr.addEventListener('readystatechange', () => {
       if (xhr.readyState === 4) {
         if (xhr.status >= 200 && xhr.status < 300) {
-          resolve(xhr.response)
+          resolve(xhr)
         } else {
           reject(xhr.statusText)
         }
@@ -23,8 +30,8 @@ export function sendXHR<T>({ method, url, data, headers }: IRequestStrategy): Pr
     xhr.open(method, url)
 
     if (headers) {
-      for (const [key, header] of headers) {
-        xhr.setRequestHeader(key, header)
+      for (const [header, key] of headers) {
+        xhr.setRequestHeader(header, key)
       }
     }
 
@@ -32,15 +39,16 @@ export function sendXHR<T>({ method, url, data, headers }: IRequestStrategy): Pr
   })
 }
 
-export function sendFetch<T>({ method, url, data, headers }: IRequestStrategy): Promise<T> {
+export async function sendFetch({ method, url, data, headers }: IRequestParams): Promise<Response> {
   const config: RequestInit = {
     method,
     headers: headers && Object.fromEntries(headers),
     body: data,
   }
+
   return fetch(url, config).then((res) => {
     if (res.ok) {
-      return res.json()
+      return res
     }
     throw new Error('Network Error')
   })
