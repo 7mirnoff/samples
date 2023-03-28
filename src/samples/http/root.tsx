@@ -17,7 +17,7 @@ const Root: React.FC = () => {
         type="button"
         onClick={async (): Promise<void> => {
           const data = await ref.current.url(`https://jsonplaceholder.typicode.com/todos/${count}`).create()
-          console.log(data)
+          console.log(await data.json())
           setCount((prevCount) => prevCount + 1)
         }}
       >
