@@ -7,7 +7,7 @@ interface IVisitor {
 export const Visitor: React.FC<IVisitor & PropsWithChildren> = ({ onVisible, children }) => {
   const observer = useRef<IntersectionObserver | null>(null)
   const elementRef = useRef<HTMLDivElement | null>(null)
-
+  // TODO: check
   useEffect(() => {
     if (observer.current) {
       observer.current.disconnect()
