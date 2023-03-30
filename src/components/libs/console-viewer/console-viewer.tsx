@@ -53,9 +53,9 @@ export const ConsoleViewer: React.FC = () => {
       </div>
       {logs.map((log) => (
         <div key={log.id}>
-          <p className={styles.logItem}>
+          <div className={styles.logItem}>
             <span className={styles.timeStamp}>{`${log.time}`}</span> <pre>{`${log.message}`}</pre>
-          </p>
+          </div>
         </div>
       ))}
     </div>
