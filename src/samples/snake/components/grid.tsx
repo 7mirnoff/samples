@@ -1,13 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { SnakeGameContext } from '../context'
 import Cell from './cell'
 
 export const Grid: React.FC = () => {
-  const { board, tick } = useContext(SnakeGameContext)
+  const { board } = useContext(SnakeGameContext)
   const cells = board.getCells()
-  useEffect(() => {
-    console.log(tick)
-  })
   return (
     <div>
       {cells.map((row, indexRow) => (
