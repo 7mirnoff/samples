@@ -8,13 +8,8 @@ module.exports = {
     "stylelint-scss"
   ],
   rules: {
-    "selector-class-pattern": [
-      "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
-      {
-        "message": "Class selectors should be in kebab-case.",
-        "ignore": ["class", "selector"]
-      }
-    ]
+    "selector-class-pattern": "^\.([a-z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$"
+
   },
   customSyntax: "postcss-scss"
 }
