@@ -4,7 +4,7 @@ import SnakeGameProvider from './context/snake-game-provider'
 import { Grid } from './components'
 import { Game } from './components/game'
 
-const Root: React.FC = () => {
+export const SnakeRoot: React.FC = () => {
   return (
     <SnakeGameProvider>
       <Game>
@@ -13,5 +13,3 @@ const Root: React.FC = () => {
     </SnakeGameProvider>
   )
 }
-
-export default Root

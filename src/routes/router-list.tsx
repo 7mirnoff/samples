@@ -6,15 +6,18 @@ function NoMatch(): JSX.Element {
   return <p>There&apos;s nothing here: 404!</p>
 }
 
-const Snake = React.lazy(async () => import('../samples/snake/root'))
-const Http = React.lazy(async () => import('../samples/http/root'))
+const Snake = React.lazy(async () => import('../pages/samples/snake'))
+const Http = React.lazy(async () => import('../pages/samples/http'))
+const Kinetic = React.lazy(async () => import('../pages/samples/kinetic'))
 
 export function RouterList(): JSX.Element {
   return (
     <Suspense fallback={<div>Загрузка</div>}>
       <Routes>
         <Route index element={<NavigationList />} />
+
         <Route path="/snake" element={<Snake />} />
+        <Route path="/kinetic" element={<Kinetic />} />
         <Route path="/http" element={<Http />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>

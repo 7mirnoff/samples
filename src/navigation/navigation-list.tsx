@@ -6,6 +6,9 @@ export const NavigationList: React.FC = () => {
     <div>
       <ul>
         <li>
+          <Link to="/kinetic">Kinetic</Link>
+        </li>
+        <li>
           <Link to="/snake">Snake</Link>
         </li>
         <li>

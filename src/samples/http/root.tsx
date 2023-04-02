@@ -5,7 +5,7 @@ import { LRUCache } from '../../feature/caches'
 import { ICustomResponse } from './impl/customResponse'
 
 const cache = new LRUCache<string, ICustomResponse<unknown>>(3)
-const Root: React.FC = () => {
+export const HttpRoot: React.FC = () => {
   const [count, setCount] = useState(1)
 
   const ref = useRef(new Request().engine(sendXHR).cache(cache).method(Method.get))
@@ -26,5 +26,3 @@ const Root: React.FC = () => {
     </div>
   )
 }
-
-export default Root
