@@ -6,6 +6,9 @@ export const NavigationList: React.FC = () => {
     <div>
       <ul>
         <li>
+          <Link to="/cubes-room">CubesRoom</Link>
+        </li>
+        <li>
           <Link to="/kinetic">Kinetic</Link>
         </li>
         <li>
