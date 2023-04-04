@@ -3,7 +3,6 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { RouterList } from '../routes/router-list'
 import { initApp } from './init-app'
-import { ConsoleViewer } from '../components/libs/console-viewer'
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -13,7 +12,6 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <RouterList />
-      <ConsoleViewer />
     </BrowserRouter>
   )
 }

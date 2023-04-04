@@ -1,8 +1,9 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useState } from 'react'
-import { Html, useKeyboardControls } from '@react-three/drei'
+import { useKeyboardControls } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
+import { Cube } from './cube'
 
 export const Player: React.FC = () => {
   const [, get] = useKeyboardControls()
@@ -11,7 +12,6 @@ export const Player: React.FC = () => {
   useFrame(() => {
     const { forward, backward, left, right } = get()
     const speed = 0.2
-
     // Определяем вектор скорости на основе нажатых кнопок
     const direction = new THREE.Vector3()
 
@@ -27,13 +27,5 @@ export const Player: React.FC = () => {
     ])
   })
 
-  return (
-    <mesh position={currentPlayerPosition}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="red" />
-      <Html distanceFactor={10}>
-        <div style={{ transform: 'translate3d(calc(50%), calc(-50% - 70px), 0)' }}>User</div>
-      </Html>
-    </mesh>
-  )
+  return <Cube position={currentPlayerPosition} color="red" name="User" />
 }

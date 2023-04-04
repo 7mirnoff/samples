@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber'
 import { KeyboardControls, OrbitControls, Stats } from '@react-three/drei'
 import { Plane } from './plane'
 import { Player } from './player'
+import { AnotherPlayer } from './another-player'
 
 export const Scene: React.FC = () => {
   return (
@@ -16,15 +17,17 @@ export const Scene: React.FC = () => {
         { name: 'jump', keys: ['Space'] },
       ]}
     >
-      <Canvas>
+      <Canvas camera={{ position: [0, 6, 10] }}>
         <ambientLight intensity={0.2} />
         <directionalLight position={[0, 3, 5]} />
 
         <Player />
+
+        <AnotherPlayer position={[2, 0.5, 2]} color="green" name="Guest" />
         <Plane />
 
         <gridHelper args={[20, 20]} />
-        <OrbitControls />
+        <OrbitControls position={[0, 4, 4]} />
         <Stats />
       </Canvas>
     </KeyboardControls>
