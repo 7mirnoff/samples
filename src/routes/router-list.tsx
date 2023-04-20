@@ -10,6 +10,7 @@ const Snake = React.lazy(async () => import('../pages/samples/snake'))
 const Http = React.lazy(async () => import('../pages/samples/http'))
 const Kinetic = React.lazy(async () => import('../pages/samples/kinetic'))
 const CubesRoom = React.lazy(async () => import('../pages/samples/cubes-room'))
+const PhysicRoom = React.lazy(async () => import('../pages/samples/physic-room'))
 
 export function RouterList(): JSX.Element {
   return (
@@ -17,6 +18,7 @@ export function RouterList(): JSX.Element {
       <Routes>
         <Route index element={<NavigationList />} />
 
+        <Route path="/physic-room" element={<PhysicRoom />} />
         <Route path="/cubes-room" element={<CubesRoom />} />
         <Route path="/snake" element={<Snake />} />
         <Route path="/kinetic" element={<Kinetic />} />
