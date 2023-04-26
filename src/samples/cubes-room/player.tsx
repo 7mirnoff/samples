@@ -28,12 +28,6 @@ export const Player: React.FC<ICube> = ({ position, name, color }) => {
     }
 
     socket.emit('positionToServer', newPosition)
-
-    // setCurrentPlayerPosition([
-    //   currentPlayerPosition[0] + direction.x * speed,
-    //   currentPlayerPosition[1],
-    //   currentPlayerPosition[2] + direction.z * speed,
-    // ])
   })
 
   return <Cube position={position} color={color} name={name} />
