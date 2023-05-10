@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useRef, useState } from 'react'
-import { Html } from '@react-three/drei'
 import { MathUtils, Mesh } from 'three'
 import { useFrame } from '@react-three/fiber'
 
@@ -30,9 +29,9 @@ export const Sphere: React.FC<ISphere> = ({ targetPosition, id }) => {
     <mesh ref={meshRef}>
       <sphereGeometry args={[1]} />
       <meshStandardMaterial color="red" />
-      <Html distanceFactor={10}>
-        <div style={{ transform: 'translate3d(calc(50%), calc(-50% - 70px), 0)' }}>{id}</div>
-      </Html>
+      {/* <Html distanceFactor={10}> */}
+      {/*  <div style={{ transform: 'translate3d(calc(50%), calc(-50% - 70px), 0)' }}>{id}</div> */}
+      {/* </Html> */}
     </mesh>
   )
 }
